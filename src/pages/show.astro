@@ -1,4 +1,6 @@
-<!-- Tidak pakai Astro.url agar tetap jalan saat dibuka langsung -->
+---
+const url = Astro.url.searchParams.get("url") ?? "";
+---
 
 <html lang="id">
   <head>
@@ -7,6 +9,7 @@
     <style>
       html, body {
         margin: 0;
+        padding: 0;
         height: 100%;
       }
       .form-container {
@@ -40,23 +43,21 @@
         />
 
         <select id="urlSelect">
-  <option value="">-- Bookmark --</option>
-  <option value="https://mryoga.my.id">Personal</option>
-  <option value="https://blog.mryoga.my.id">Catatan</option>
-  <option value="https://code.mryoga.my.id">Snippet Code</option>
-  <option value="https://github.com/mrzonk">Github Profile</option>
-</select>
-
+          <option value="">-- Bookmark --</option>
+          <option value="https://mryoga.my.id">Personal</option>
+          <option value="https://blog.mryoga.my.id">Catatan</option>
+          <option value="https://code.mryoga.my.id">Snippet Code</option>
+          <option value="https://github.com/mrzonk">GitHub Profile</option>
+        </select>
 
         <button type="submit">Tampilkan</button>
-        <button type="button" onclick="window.location.reload()">🔄 Muat Ulang</button>
+        <button type="button" onclick="window.location.reload()">?? Muat Ulang</button>
       </form>
     </div>
 
     <iframe id="viewerFrame"></iframe>
 
     <script>
-      // Ambil URL dari query string
       const params = new URLSearchParams(window.location.search);
       const url = params.get("url") ?? "";
 
@@ -65,15 +66,27 @@
       const select = document.getElementById("urlSelect");
       const form = document.getElementById("viewerForm");
 
-      // Isi input dan iframe berdasarkan URL
-      input.value = url;
-      iframe.src = url;
+      if (
+        input instanceof HTMLInputElement &&
+        iframe instanceof HTMLIFrameElement &&
+        select instanceof HTMLSelectElement &&
+        form instanceof HTMLFormElement
+      ) {
+        input.value = url;
+        if (url) {
+          iframe.src = url;
 
-      // Saat dropdown dipilih
-      select.addEventListener("change", () => {
-        input.value = select.value;
-        form.submit(); // reload dengan URL baru
-      });
+          // Jika iframe gagal dimuat (karena CSP), redirect langsung
+          iframe.onerror = () => {
+            window.location.href = url;
+          };
+        }
+
+        select.addEventListener("change", () => {
+          input.value = select.value;
+          form.submit(); // kirim form tanpa reload manual
+        });
+      }
     </script>
   </body>
 </html>
