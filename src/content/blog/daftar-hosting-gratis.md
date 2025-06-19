@@ -1,7 +1,7 @@
 ---
 title: "Daftar Hosting Gratis Terbaik (Freemium) untuk Developer"
 description: "Panduan lengkap daftar layanan hosting gratis untuk frontend, backend, database, storage, dan lainnya — cocok untuk belajar, prototyping, dan deployment cepat."
-pubDate: "Jun 4 2025"
+pubDate: "Jun 19 2025"
 ---
 
 Berikut adalah **daftar layanan hosting freemium (gratis selamanya)** untuk kebutuhan pengembangan aplikasi — mulai dari frontend, backend, database, hingga mailing dan analitik. Cocok untuk pemula, hobi, dan prototipe startup.
