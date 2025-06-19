@@ -1,7 +1,7 @@
 ---
 title: "Cara Install Docker Linux"
 description: "tutorial menginstall docker di os linux"
-pubDate: "Jun 19 2025"
+pubDate: "Jun 4 2025"
 ---
 Berikut adalah **tutorial lengkap step-by-step untuk menginstal Docker di Linux (Ubuntu/Debian)** — aman, cepat, dan bisa langsung kamu tempel ke Blogger jika mau.
 
